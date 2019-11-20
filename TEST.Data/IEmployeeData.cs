@@ -5,7 +5,7 @@ using TEST.Domain;
 
 namespace TEST.Data
 {
-    interface IEmployeeData
+    public interface IEmployeeData
     {
         IEnumerable<Employee> GetEmployees();
     }

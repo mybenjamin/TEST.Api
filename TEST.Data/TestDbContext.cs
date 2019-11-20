@@ -6,8 +6,11 @@ using TEST.Domain;
 
 namespace TEST.Data
 {
-    class TestDbContext : DbContext
+    public class TestDbContext : DbContext
     {
+        public TestDbContext(DbContextOptions<TestDbContext> options)
+            :base(options) { }
+
         public DbSet<Person> Persons { get; set; }
         public DbSet<Employee> Employees { get; set; }
     }
