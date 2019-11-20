@@ -10,7 +10,7 @@ using TEST.Data;
 namespace TEST.Data.Migrations
 {
     [DbContext(typeof(TestDbContext))]
-    [Migration("20191120095259_initialcreate")]
+    [Migration("20191120105803_initialcreate")]
     partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,9 +32,10 @@ namespace TEST.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("EmployeeNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PersonId")
+                    b.Property<int>("PersonId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("TerminatedDate")
@@ -58,9 +59,11 @@ namespace TEST.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PersonId");
@@ -72,7 +75,9 @@ namespace TEST.Data.Migrations
                 {
                     b.HasOne("TEST.Domain.Person", "Person")
                         .WithMany()
-                        .HasForeignKey("PersonId");
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
