@@ -13,8 +13,8 @@ namespace TEST.Data.Migrations
                 {
                     PersonId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LastName = table.Column<string>(nullable: true),
-                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: false),
+                    FirstName = table.Column<string>(nullable: false),
                     BirthDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -28,8 +28,8 @@ namespace TEST.Data.Migrations
                 {
                     EmployeeId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PersonId = table.Column<int>(nullable: true),
-                    EmployeeNumber = table.Column<string>(nullable: true),
+                    PersonId = table.Column<int>(nullable: false),
+                    EmployeeNumber = table.Column<string>(nullable: false),
                     EmployedDate = table.Column<DateTime>(nullable: false),
                     TerminatedDate = table.Column<DateTime>(nullable: false)
                 },
@@ -41,7 +41,7 @@ namespace TEST.Data.Migrations
                         column: x => x.PersonId,
                         principalTable: "Persons",
                         principalColumn: "PersonId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
